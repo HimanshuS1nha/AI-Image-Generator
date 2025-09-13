@@ -5,11 +5,14 @@ import {
   Pressable,
   Image,
   ScrollView,
+  Alert,
 } from "react-native";
 import React, { useState, useMemo } from "react";
 import tw from "twrnc";
 import { Feather } from "@expo/vector-icons";
 import { FlashList } from "@shopify/flash-list";
+import { useMutation } from "@tanstack/react-query";
+import axios, { AxiosError } from "axios";
 
 import Message from "@/components/message";
 
@@ -32,6 +35,37 @@ export default function Index() {
     []
   );
 
+  const { mutate: handleGenerateImage, isPending } = useMutation({
+    mutationKey: ["generate-image"],
+    mutationFn: async () => {
+      const { data } = await axios.post(
+        `${process.env.EXPO_PUBLIC_API_URL}/api/generate`,
+        { prompt: input, aspectRatio }
+      );
+
+      return data as { image: string };
+    },
+    onMutate: () => {
+      setMessages((prev) => [{ role: "user", content: input }, ...prev]);
+      setInput("");
+    },
+    onSuccess: (data) => {
+      setMessages((prev) => [
+        { role: "ai", aspectRatio, image: data.image },
+        ...prev,
+      ]);
+    },
+    onError: (error) => {
+      if (error instanceof AxiosError && error.response?.data.error) {
+        Alert.alert("Error", error.response.data.error);
+      } else {
+        Alert.alert(
+          "Error",
+          "Error occured while generating the image. Please try again later"
+        );
+      }
+    },
+  });
   return (
     <View style={tw`bg-black flex-1 px-2`}>
       <View style={tw`flex-1 pb-4`}>
@@ -93,7 +127,15 @@ export default function Index() {
             onChangeText={(text) => setInput(text)}
           />
 
-          <Pressable style={tw`bg-indigo-600 p-1.5 rounded-full`}>
+          <Pressable
+            style={tw`${
+              isPending || input.trim().length === 0
+                ? "bg-indigo-300"
+                : "bg-indigo-600"
+            } p-1.5 rounded-full`}
+            disabled={isPending || input.trim().length === 0}
+            onPress={() => handleGenerateImage()}
+          >
             <Feather name="send" size={24} color="white" />
           </Pressable>
         </View>
