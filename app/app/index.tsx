@@ -1,18 +1,59 @@
-import { Text, View, TextInput, Pressable } from "react-native";
-import React from "react";
+import { Text, View, TextInput, Pressable, Image } from "react-native";
+import React, { useState, useMemo } from "react";
 import tw from "twrnc";
 import { Feather } from "@expo/vector-icons";
 
+import { MessageType } from "@/types";
+
 export default function Index() {
+  const [messages, setMessages] = useState<MessageType[]>([]);
+  const [input, setInput] = useState("");
+
+  const images = useMemo(
+    () => [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD-nJDUXoWmPYZ5nCO8ox68R33NIuq2S7z-Q&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZv83NYOEzjNslVFcBHiEqQXFxndpG0AS2CQ&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVXnoQzmaPaH3IXSUF3SGDpovWDFLzPJEk1A&s",
+      "https://images.pexels.com/photos/11204757/pexels-photo-11204757.jpeg",
+    ],
+    []
+  );
+
   return (
     <View style={tw`bg-black flex-1 px-2`}>
-      <View style={tw`flex-1 pb-4`}></View>
+      <View style={tw`flex-1 pb-4`}>
+        {messages.length > 0 ? (
+          <></>
+        ) : (
+          <View style={tw`flex-1 justify-center items-center gap-y-8`}>
+            <Text
+              style={tw`text-white text-3xl font-semibold w-[70%] text-center`}
+            >
+              Create your own masterpiece
+            </Text>
+
+            <View style={tw`flex-row flex-wrap gap-4 w-[90%]`}>
+              {images.map((image) => {
+                return (
+                  <Image
+                    source={{ uri: image }}
+                    style={tw`w-[45%] h-40 rounded-lg`}
+                    key={image}
+                  />
+                );
+              })}
+            </View>
+          </View>
+        )}
+      </View>
 
       <View style={tw`flex-row gap-x-3.5 items-center`}>
         <TextInput
           style={tw`border-b border-b-white flex-1 text-white`}
           placeholder="Type here..."
           placeholderTextColor={"#d1d5dc"}
+          value={input}
+          onChangeText={(text) => setInput(text)}
         />
 
         <Pressable style={tw`bg-indigo-600 p-1.5 rounded-full`}>
