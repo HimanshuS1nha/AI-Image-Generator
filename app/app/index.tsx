@@ -1,13 +1,23 @@
-import { Text, View, TextInput, Pressable, Image } from "react-native";
+import {
+  Text,
+  View,
+  TextInput,
+  Pressable,
+  Image,
+  ScrollView,
+} from "react-native";
 import React, { useState, useMemo } from "react";
 import tw from "twrnc";
 import { Feather } from "@expo/vector-icons";
+
+import { aspectRatios } from "@/constants/aspect-ratios";
 
 import { MessageType } from "@/types";
 
 export default function Index() {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [input, setInput] = useState("");
+  const [aspectRatio, setAspectRatio] = useState(aspectRatios[0].value);
 
   const images = useMemo(
     () => [
@@ -47,18 +57,36 @@ export default function Index() {
         )}
       </View>
 
-      <View style={tw`flex-row gap-x-3.5 items-center`}>
-        <TextInput
-          style={tw`border-b border-b-white flex-1 text-white`}
-          placeholder="Type here..."
-          placeholderTextColor={"#d1d5dc"}
-          value={input}
-          onChangeText={(text) => setInput(text)}
-        />
+      <View style={tw`pb-7 w-full gap-y-3`}>
+        <ScrollView horizontal contentContainerStyle={tw`gap-x-4`}>
+          {aspectRatios.map((item) => {
+            return (
+              <Pressable
+                style={tw`${
+                  item.value === aspectRatio ? "bg-indigo-600" : "bg-gray-700"
+                } px-4 py-1.5 rounded-full`}
+                key={item.value}
+                onPress={() => setAspectRatio(item.value)}
+              >
+                <Text style={tw`text-white`}>{item.label}</Text>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
 
-        <Pressable style={tw`bg-indigo-600 p-1.5 rounded-full`}>
-          <Feather name="send" size={24} color="white" />
-        </Pressable>
+        <View style={tw`flex-row gap-x-3.5 items-center`}>
+          <TextInput
+            style={tw`border-b border-b-white flex-1 text-white`}
+            placeholder="Type here..."
+            placeholderTextColor={"#d1d5dc"}
+            value={input}
+            onChangeText={(text) => setInput(text)}
+          />
+
+          <Pressable style={tw`bg-indigo-600 p-1.5 rounded-full`}>
+            <Feather name="send" size={24} color="white" />
+          </Pressable>
+        </View>
       </View>
     </View>
   );
