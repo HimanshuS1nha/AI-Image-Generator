@@ -9,6 +9,9 @@ import {
 import React, { useState, useMemo } from "react";
 import tw from "twrnc";
 import { Feather } from "@expo/vector-icons";
+import { FlashList } from "@shopify/flash-list";
+
+import Message from "@/components/message";
 
 import { aspectRatios } from "@/constants/aspect-ratios";
 
@@ -33,7 +36,14 @@ export default function Index() {
     <View style={tw`bg-black flex-1 px-2`}>
       <View style={tw`flex-1 pb-4`}>
         {messages.length > 0 ? (
-          <></>
+          <FlashList
+            data={messages}
+            keyExtractor={(_, i) => i.toString()}
+            renderItem={({ item }) => {
+              return <Message message={item} />;
+            }}
+            maintainVisibleContentPosition={{ startRenderingFromBottom: true }}
+          />
         ) : (
           <View style={tw`flex-1 justify-center items-center gap-y-8`}>
             <Text
