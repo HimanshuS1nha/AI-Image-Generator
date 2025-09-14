@@ -7,21 +7,23 @@ Transform your ideas into stunning visuals with our AI-powered image generator â
 1. Setup environment variables according to .env.example file
 
 2. Install packages and run the server
+
 - Server
 
-   ```bash
-   npm install
+  ```bash
+  npm install
 
-   npm run dev
-   ```
+  npm run dev
+  ```
 
 - App
 
-   ```bash
-   npm install
+  ```bash
+  npx expo prebuild
 
-   npm run start
-   ```
+  npx expo run:android # For android
+  npx expo run:ios # For iOS
+  ```
 
 ## Features
 
@@ -39,7 +41,7 @@ Transform your ideas into stunning visuals with our AI-powered image generator â
 
 ## Demo
 
-Live Demo - Coming Soon
+Live Demo - [Click Here](https://www.youtube.com/shorts/DvBf_FAE9_c)
 
 ## ðŸš€ About Me
 
