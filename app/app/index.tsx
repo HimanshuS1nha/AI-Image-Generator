@@ -13,6 +13,7 @@ import { Feather } from "@expo/vector-icons";
 import { FlashList } from "@shopify/flash-list";
 import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
+import LoadingDots from "react-native-loading-dots";
 
 import Message from "@/components/message";
 import SaveImageModal from "@/components/save-image-modal";
@@ -116,6 +117,12 @@ export default function Index() {
                 );
               })}
             </View>
+          </View>
+        )}
+
+        {isPending && (
+          <View style={tw`w-24`}>
+            <LoadingDots bounceHeight={4} size={15} />
           </View>
         )}
       </View>
