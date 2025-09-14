@@ -1,11 +1,17 @@
-import { View, Text, Pressable, Image } from "react-native";
+import { View, Text, Pressable, Image, Alert } from "react-native";
 import React from "react";
 import tw from "twrnc";
 import { Feather } from "@expo/vector-icons";
 
 import { MessageType } from "@/types";
 
-const Message = ({ message }: { message: MessageType }) => {
+const Message = ({
+  message,
+  saveImage,
+}: {
+  message: MessageType;
+  saveImage: (base64: string) => void;
+}) => {
   return (
     <View style={tw`mb-4 ${message.role === "user" ? "items-end" : ""}`}>
       <View
@@ -25,7 +31,10 @@ const Message = ({ message }: { message: MessageType }) => {
             />
 
             <View style={tw`flex-row absolute bottom-5 right-5`}>
-              <Pressable style={tw`p-2 bg-indigo-600 rounded-full shadow`}>
+              <Pressable
+                style={tw`p-2 bg-indigo-600 rounded-full shadow`}
+                onPress={() => saveImage(message.image.split(",")[1])}
+              >
                 <Feather name="download" size={24} color="white" />
               </Pressable>
             </View>

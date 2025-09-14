@@ -15,6 +15,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 
 import Message from "@/components/message";
+import SaveImageModal from "@/components/save-image-modal";
 
 import { aspectRatios } from "@/constants/aspect-ratios";
 
@@ -24,6 +25,9 @@ export default function Index() {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [input, setInput] = useState("");
   const [aspectRatio, setAspectRatio] = useState(aspectRatios[0].value);
+  const [isSaveImageDialogVisible, setIsSaveImageDialogVisible] =
+    useState(false);
+  const [selectedImageBase64, setSelectedImageBase64] = useState<string>();
 
   const images = useMemo(
     () => [
@@ -46,13 +50,13 @@ export default function Index() {
       return data as { image: string };
     },
     onMutate: () => {
-      setMessages((prev) => [{ role: "user", content: input }, ...prev]);
+      setMessages((prev) => [...prev, { role: "user", content: input }]);
       setInput("");
     },
     onSuccess: (data) => {
       setMessages((prev) => [
-        { role: "ai", aspectRatio, image: data.image },
         ...prev,
+        { role: "ai", aspectRatio, image: data.image },
       ]);
     },
     onError: (error) => {
@@ -68,13 +72,28 @@ export default function Index() {
   });
   return (
     <View style={tw`bg-black flex-1 px-2`}>
+      <SaveImageModal
+        isVisible={isSaveImageDialogVisible}
+        setIsVisible={setIsSaveImageDialogVisible}
+        selectedImageBase64={selectedImageBase64}
+        setSelectedImageBase64={setSelectedImageBase64}
+      />
+
       <View style={tw`flex-1 pb-4`}>
         {messages.length > 0 ? (
           <FlashList
             data={messages}
             keyExtractor={(_, i) => i.toString()}
             renderItem={({ item }) => {
-              return <Message message={item} />;
+              return (
+                <Message
+                  message={item}
+                  saveImage={(base64) => {
+                    setSelectedImageBase64(base64);
+                    setIsSaveImageDialogVisible(true);
+                  }}
+                />
+              );
             }}
             maintainVisibleContentPosition={{ startRenderingFromBottom: true }}
           />
