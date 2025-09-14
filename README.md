@@ -2,6 +2,12 @@
 
 Transform your ideas into stunning visuals with our AI-powered image generator — create art, designs, and more in seconds.
 
+## Screenshots
+
+![AI Image Generator 1](https://github.com/user-attachments/assets/33c3c4c4-53d6-4c91-8558-b5e4fe1dc211)
+
+![AI Image Generator 2](https://github.com/user-attachments/assets/b21a38d2-74f4-49df-bfb6-54376ccce8dc)
+
 ## Get started
 
 1. Setup environment variables according to .env.example file
