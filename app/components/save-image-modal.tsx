@@ -21,7 +21,7 @@ const SaveImageModal = ({
 }) => {
   const [filename, setFilename] = useState("");
 
-  const { mutate: handleSaveImage } = useMutation({
+  const { mutate: handleSaveImage, isPending } = useMutation({
     mutationKey: ["save-image"],
     mutationFn: async () => {
       const filepath = RNFS.DocumentDirectoryPath + `/${filename}.png`;
@@ -86,6 +86,12 @@ const SaveImageModal = ({
           <Pressable
             style={tw`bg-indigo-600 justify-center items-center py-2 rounded-lg`}
             onPress={() => handleSaveImage()}
+            disabled={
+              !filename ||
+              filename.trim().length === 0 ||
+              isPending ||
+              !selectedImageBase64
+            }
           >
             <Text style={tw`text-white font-medium`}>Save</Text>
           </Pressable>
