@@ -12,8 +12,8 @@
   "app": {
     "windows": [
       {
-        "title": "desktop",
-        "width": 800,
+        "title": "AI Image Generator",
+        "width": 1200,
         "height": 600
       }
     ],
