@@ -12,7 +12,7 @@ const ConfigSection = ({
   setAspectRatio: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   return (
-    <div className="flex flex-col gap-y-4 p-3 rounded-lg w-[25%] border-[0.5px] border-gray-500 bg-[#171a17] h-fit">
+    <div className="flex flex-col gap-y-4 p-3 rounded-lg w-[25%] bg-[#171a17] h-fit">
       <p>Aspect Ratio</p>
 
       <div className="flex gap-2 items-center flex-wrap">

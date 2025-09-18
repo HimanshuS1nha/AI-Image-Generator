@@ -3,6 +3,7 @@ import { setTheme } from "@tauri-apps/api/app";
 
 import ConfigSection from "./components/config-section";
 import MainSection from "./components/main-section";
+import HistorySection from "./components/history-section";
 
 import { aspectRatios } from "./constants/aspect-ratios";
 
@@ -29,6 +30,8 @@ const App = () => {
         setInput={setInput}
         generatedImage={generatedImage}
       />
+
+      <HistorySection />
     </div>
   );
 };
