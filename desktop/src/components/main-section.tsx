@@ -7,10 +7,14 @@ const MainSection = ({
   input,
   setInput,
   generatedImage,
+  handleGenerateImage,
+  isPending,
 }: {
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
   generatedImage: { src: string; aspectRatio: string } | undefined;
+  handleGenerateImage: () => void;
+  isPending: boolean;
 }) => {
   return (
     <div className="flex flex-col gap-y-6 w-[50%]">
@@ -26,7 +30,8 @@ const MainSection = ({
         <div className="flex justify-end">
           <Button
             className="bg-gradient-to-br from-violet-800 via-indigo-700 to-indigo-800 cursor-pointer"
-            disabled={!input || input.trim().length === 0}
+            disabled={!input || input.trim().length === 0 || isPending}
+            onClick={handleGenerateImage}
           >
             Generate
           </Button>
@@ -39,6 +44,7 @@ const MainSection = ({
             src={generatedImage.src}
             alt="Generated Image"
             style={{ aspectRatio: generatedImage.aspectRatio }}
+            className="rounded-lg"
           />
         ) : (
           <p className="text-gray-300 text-sm">
