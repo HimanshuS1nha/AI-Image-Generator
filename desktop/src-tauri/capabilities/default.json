@@ -6,6 +6,10 @@
   "permissions": [
     "core:default",
     "opener:default",
-    "core:app:allow-set-app-theme"
+    "core:app:allow-set-app-theme",
+    "store:default",
+    "dialog:default",
+    "fs:default",
+    "fs:allow-app-write"
   ]
 }
