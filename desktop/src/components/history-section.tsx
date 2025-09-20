@@ -5,7 +5,7 @@ const HistorySection = () => {
     "A car race competition",
   ];
   return (
-    <div className="flex flex-col gap-y-4 p-3 rounded-lg w-[25%] bg-[#171a17] h-fit">
+    <div className="flex flex-col gap-y-4 p-3 rounded-lg w-full lg:w-[25%] bg-[#171a17] h-fit">
       <p>Last 3 Prompts</p>
 
       <div className="flex flex-col gap-y-2.5">

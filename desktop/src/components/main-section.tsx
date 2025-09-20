@@ -17,7 +17,7 @@ const MainSection = ({
   isPending: boolean;
 }) => {
   return (
-    <div className="flex flex-col gap-y-6 w-[50%]">
+    <div className="flex flex-col gap-y-6 w-full lg:w-[50%]">
       <div className="flex flex-col gap-y-4 py-2 px-2.5 rounded-lg bg-[#171a17]">
         <p>Prompt</p>
         <Textarea

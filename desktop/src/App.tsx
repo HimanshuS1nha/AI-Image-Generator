@@ -40,21 +40,23 @@ const App = () => {
     setTheme("dark");
   }, []);
   return (
-    <div className="flex gap-x-4 px-4 mt-4">
-      <ConfigSection
-        aspectRatio={aspectRatio}
-        setAspectRatio={setAspectRatio}
-      />
+    <div className="flex justify-center mt-4 px-4">
+      <div className="flex flex-col lg:flex-row gap-4 max-w-[1200px] w-full justify-center">
+        <ConfigSection
+          aspectRatio={aspectRatio}
+          setAspectRatio={setAspectRatio}
+        />
 
-      <MainSection
-        input={input}
-        setInput={setInput}
-        generatedImage={generatedImage}
-        handleGenerateImage={handleGenerateImage}
-        isPending={isPending}
-      />
+        <MainSection
+          input={input}
+          setInput={setInput}
+          generatedImage={generatedImage}
+          handleGenerateImage={handleGenerateImage}
+          isPending={isPending}
+        />
 
-      <HistorySection />
+        <HistorySection />
+      </div>
     </div>
   );
 };
