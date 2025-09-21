@@ -61,7 +61,9 @@ Transform your ideas into stunning visuals with our AI-powered image generator â
 
 ## Demo
 
-Live Demo - [Click Here](https://www.youtube.com/shorts/DvBf_FAE9_c)
+- App - [Click Here](https://www.youtube.com/shorts/DvBf_FAE9_c)
+
+- Desktop - [Click Here](https://www.youtube.com/watch?v=vb5ZzRLgGD0)
 
 ## ðŸš€ About Me
 
