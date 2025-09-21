@@ -31,6 +31,14 @@ Transform your ideas into stunning visuals with our AI-powered image generator â
   npx expo run:ios # For iOS
   ```
 
+- Desktop
+
+  ```bash
+  npm install
+
+  npm run tauri dev
+  ```
+
 ## Features
 
 - Generate images using Google Gemini
