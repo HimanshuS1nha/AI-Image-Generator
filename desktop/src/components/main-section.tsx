@@ -55,7 +55,7 @@ const MainSection = ({
     },
     onSuccess: (data) => {
       if (!data.aborted) {
-        toast.success(`Image save successfully at ${data.path}`);
+        toast.success(`Image saved successfully at ${data.path}`);
       }
     },
     onError: () => {
@@ -94,7 +94,7 @@ const MainSection = ({
               className="rounded-lg"
             />
             <Button
-              className="absolute top-2.5 right-2.5"
+              className="absolute top-2.5 right-2.5 cursor-pointer"
               onClick={() => handleSaveImage()}
               disabled={saveImagePending}
             >
