@@ -4,9 +4,15 @@ Transform your ideas into stunning visuals with our AI-powered image generator â
 
 ## Screenshots
 
+- App
+
 ![AI Image Generator 1](https://github.com/user-attachments/assets/33c3c4c4-53d6-4c91-8558-b5e4fe1dc211)
 
 ![AI Image Generator 2](https://github.com/user-attachments/assets/b21a38d2-74f4-49df-bfb6-54376ccce8dc)
+
+- Desktop
+
+![AI Image Generator Desktop 1](https://github.com/user-attachments/assets/6c154a15-d37e-4e28-a706-b8e2f212cd58)
 
 ## Get started
 
